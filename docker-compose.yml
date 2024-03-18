@@ -44,14 +44,14 @@ services:
         PORT: 80
         USERNAME: "balena"
         PASSWORD: "balena"
-        ENCRIPTION_KEY: "balena"        
+        ENCRIPTION_KEY: "balena"
     cap_add:
         - SYS_RAWIO
     devices:
         - "/dev/mem:/dev/mem"
         - "/dev/gpiomem:/dev/gpiomem"
         - "/dev/i2c-1:/dev/i2c-1"
-  
+
 
   # ------------------------------------------------------------------------------------
   # MQTT
@@ -70,6 +70,8 @@ services:
     image: influxdb:1.7.11
     container_name: influxdb
     restart: unless-stopped
+    ports:
+        - "8086:8086"
     volumes:
         - influxdb-data:/var/lib/influxdb
         - influxdb-etc:/etc/influxdb
@@ -85,5 +87,3 @@ services:
         - "8080:80"
     volumes:
         - "grafana-data:/data"
-
-
